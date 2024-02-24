@@ -1,55 +1,86 @@
+
+import 'dart:convert';
+
+CameraInfo cameraInfoFromJson(String str) => CameraInfo.fromJson(json.decode(str));
+
+String cameraInfoToJson(CameraInfo data) => json.encode(data.toJson());
+
 class CameraInfo {
-    final List<Item> items;
-    final ApiInfo apiInfo;
+    List<Item> items;
 
     CameraInfo({
         required this.items,
-        required this.apiInfo,
     });
 
+    factory CameraInfo.fromJson(Map<String, dynamic> json) => CameraInfo(
+        items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "items": List<dynamic>.from(items.map((x) => x.toJson())),
+    };
 }
 
 class ApiInfo {
-    final String status;
+    String status;
 
     ApiInfo({
         required this.status,
     });
 
+    factory ApiInfo.fromJson(Map<String, dynamic> json) => ApiInfo(
+        status: json["status"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "status": status,
+    };
 }
 
 class Item {
-    final DateTime timestamp;
-    final List<Camera> cameras;
+    List<Camera> cameras;
 
     Item({
-        required this.timestamp,
         required this.cameras,
     });
 
+    factory Item.fromJson(Map<String, dynamic> json) => Item(
+        cameras: List<Camera>.from(json["cameras"].map((x) => Camera.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "cameras": List<dynamic>.from(cameras.map((x) => x.toJson())),
+    };
 }
 
 class Camera {
-    final DateTime timestamp;
-    final String image;
-    final Location location;
-    final String cameraId;
-    final ImageMetadata imageMetadata;
+    String image;
+    Location location;
+    String cameraId;
 
     Camera({
-        required this.timestamp,
         required this.image,
         required this.location,
         required this.cameraId,
-        required this.imageMetadata,
     });
 
+    factory Camera.fromJson(Map<String, dynamic> json) => Camera(
+        image: json["image"],
+        location: Location.fromJson(json["location"]),
+        cameraId: json["camera_id"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "image": image,
+        "location": location.toJson(),
+        "camera_id": cameraId,
+    };
 }
 
 class ImageMetadata {
-    final int height;
-    final int width;
-    final String md5;
+    int height;
+    int width;
+    String md5;
 
     ImageMetadata({
         required this.height,
@@ -57,15 +88,35 @@ class ImageMetadata {
         required this.md5,
     });
 
+    factory ImageMetadata.fromJson(Map<String, dynamic> json) => ImageMetadata(
+        height: json["height"],
+        width: json["width"],
+        md5: json["md5"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "height": height,
+        "width": width,
+        "md5": md5,
+    };
 }
 
 class Location {
-    final double latitude;
-    final double longitude;
+    double latitude;
+    double longitude;
 
     Location({
         required this.latitude,
         required this.longitude,
     });
 
+    factory Location.fromJson(Map<String, dynamic> json) => Location(
+        latitude: json["latitude"]?.toDouble(),
+        longitude: json["longitude"]?.toDouble(),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "latitude": latitude,
+        "longitude": longitude,
+    };
 }

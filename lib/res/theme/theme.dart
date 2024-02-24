@@ -1,4 +1,3 @@
-import 'package:camera_finder/res/styles.dart';
 import 'package:flutter/material.dart';
 
 import '../colors.dart';
@@ -15,14 +14,6 @@ class KTheme {
 //--------------compponents color code---------------//
     scaffoldBackgroundColor: kWhite,
     appBarTheme: const AppBarTheme(backgroundColor: kWhite),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: kWhite,
-        selectedItemColor: kWarnning,
-        selectedLabelStyle: KStyle.content(color: kWarnning, size: 11),
-        unselectedItemColor: kGrey,
-        unselectedLabelStyle: KStyle.content(color: kGrey, size: 11),
-        showUnselectedLabels: true,
-        elevation: 10),
     visualDensity: VisualDensity.adaptivePlatformDensity,
 
 //--------------font family---------------//

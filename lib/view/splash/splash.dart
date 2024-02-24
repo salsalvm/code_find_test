@@ -3,6 +3,7 @@ import 'package:camera_finder/res/colors.dart';
 import 'package:camera_finder/view/home/hoome.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 late Size size;
 
 class ScreenSplash extends StatelessWidget {
@@ -13,13 +14,13 @@ class ScreenSplash extends StatelessWidget {
     size = MediaQuery.of(context).size;
     checkUserLogin(context);
     Get.put(HomeControler());
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: kSplashColor,
       body: Center(
         child: Container(
           height: size.height * .5,
           width: size.width * .9,
-          decoration:  const BoxDecoration(
+          decoration: const BoxDecoration(
             color: kSplashColor,
             image: DecorationImage(
               fit: BoxFit.fill,
@@ -32,13 +33,13 @@ class ScreenSplash extends StatelessWidget {
     );
   }
 
-    Future<void> checkUserLogin(context) async {
-
-      await Future.delayed(const Duration(seconds: 2));
-      Navigator.pushReplacement(context,      MaterialPageRoute(
-                builder: (context) => const ScreenHome(),
-              ),
-            );
-
+  Future<void> checkUserLogin(context) async {
+    await Future.delayed(const Duration(seconds: 2));
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ScreenHome(),
+      ),
+    );
   }
 }

@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
-// our project evey text style is hard coded
-// Basically 3 styles :title , content &  heading
-//we can update any space at anywhere, because it's refactor concept and basic oops concept are implimented
-
 class KStyle {
   //---------------content text style---------------//
   static TextStyle content({
