@@ -23,7 +23,7 @@ class HomeControler extends GetxController {
     super.onInit();
     getCameraInfo(getTimeStamp(), true);
 
-   timer = Timer.periodic(const Duration(seconds: 10), (Timer timer) {
+   timer = Timer.periodic(const Duration(minutes: 1), (Timer timer) {
       getCameraInfo(getTimeStamp(), false);
     });
   }
