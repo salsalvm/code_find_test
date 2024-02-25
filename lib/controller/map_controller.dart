@@ -23,7 +23,7 @@ class HomeControler extends GetxController {
     super.onInit();
     getCameraInfo(getTimeStamp(), true);
 
-   timer = Timer.periodic(const Duration(minutes: 1), (Timer timer) {
+   timer = Timer.periodic(const Duration(seconds: 10), (Timer timer) {
       getCameraInfo(getTimeStamp(), false);
     });
   }
@@ -36,13 +36,14 @@ class HomeControler extends GetxController {
     try {
       final response = await CameraServiceEndPont().getCameraInfo(timeStamp);
       if (response!.statusCode == 200 || response.statusCode == 201) {
-        loading.value = false;
         final datas = cameraInfoFromJson(response.body);
         cameraInfoList.clear();
+        markers.clear();
         update();
-        await Future.delayed(const Duration(seconds: 2));
+        await Future.delayed(const Duration(seconds: 1));
         cameraInfoList.addAll(datas.items[0].cameras);
         addMarkers(initial);
+         loading.value = false;
         log('api data size -> ${datas.items[0].cameras.length.toString()}');
       }
     } catch (e) {
